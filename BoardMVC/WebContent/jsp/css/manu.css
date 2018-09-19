@@ -1,0 +1,30 @@
+@charset "UTF-8";
+div >ul{
+  display: flex;
+  background-color: black;
+}
+ul li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: white;
+  margin: 0 15px;
+}
+li:hover >a {
+  background-color: gray;
+}
+div >ul{
+  height: 25px;
+}
+div li ul{
+  display: none;
+  padding: 0;
+  margin: 0;
+  background-color: black;
+}
+div li:hover ul{
+  display: block;
+  position:relative;
+  z-index: 3;
+}
