@@ -19,7 +19,7 @@ import kr.itedu.boardmvc.action.BoardUpdateAction;
  */
 @WebServlet("*.bo")
 public class BoardFrontController extends HttpServlet {
-	
+	//주석도 되나..?
 	protected void doProc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String reqURI = request.getRequestURI(); //전체주소 (뒤)
