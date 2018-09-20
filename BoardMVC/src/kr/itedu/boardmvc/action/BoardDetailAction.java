@@ -4,7 +4,6 @@ package kr.itedu.boardmvc.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import kr.itedu.boardmvc.*;
-import java.util.*;
 import kr.itedu.boardmvc.common.*;
 import kr.itedu.boardmvc.service.BoardListService;
 

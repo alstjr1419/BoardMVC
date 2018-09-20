@@ -21,8 +21,8 @@ public class BoardListService {
 		BoardVO result = new BoardVO();
 		BoardDAO dao = BoardDAO.getInstance();
 		result = dao.getBoardDetail(btype, bid);
-		
-		
+		//pull test
+		//commit test
 		return result;
 	}
 }

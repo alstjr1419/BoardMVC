@@ -4,7 +4,6 @@ package kr.itedu.boardmvc.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import kr.itedu.boardmvc.*;
-import java.util.*;
 import kr.itedu.boardmvc.common.*;
 import kr.itedu.boardmvc.service.BoardListService;
 
@@ -19,11 +18,16 @@ public class BoardUpdateAction implements Action{
 		BoardListService service = new BoardListService();
 		int btype = Utils.getParamInt(request.getParameter("btype"));//jsp입력해야한다.
 		int bid = Utils.getParamInt(request.getParameter("bid"));
-		BoardVO data = service.getBoardDetailList(btype,bid);
+		if(bid != -1) {
+			BoardVO data = service.getBoardDetailList(btype,bid);
+			request.setAttribute("data", data);
+		}else {
+			forward.setRedirect(true);
+		}
 		
 		request.setAttribute("content", "boardDetail");
 		request.setAttribute("btype", btype);
-		request.setAttribute("data", data);
+		
 		
 		return forward;
 	}

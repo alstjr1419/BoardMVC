@@ -45,7 +45,7 @@ public class BoardFrontController extends HttpServlet {
 				//TODO++: 예외처리
 				e.printStackTrace();
 			}
-		}else if(comd.equals("/update.bo")){
+		}else if(comd.equals("/write.bo")){
 			action = new BoardUpdateAction(); //인터페이스 자식 객체 생성
 			try {
 				forward = action.execute(request, response); //request, response받기 , param값 세팅, 보낼곳 적기
