@@ -26,17 +26,21 @@ public class BoardDAO {
 		return dao;
 	}
 	
-	public ArrayList<BoardVO> getBoardList(int btype) {
+	public ArrayList<BoardVO> getBoardList(int btype, int countPage, int page) {
 		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		BoardPaging bp = new BoardPaging(btype, countPage, page);
+		int startCount = bp.startCount;
+		int endCount = bp.endCount;
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		 try {
 			con = getConn();
-			String sql = String.format( " select "
-					+ " bid, btitle, bcontent, " 
-					+ " to_char(bregdate, 'YYYY-MM-DD hh24:mi') as bregdate " 
-					+ " from t_board%d ORDER BY bid desc ",btype);
+			String sql = String.format( " select from "
+					+ " (select rownum as rnum, z.*from " 
+					+ " (select * from t_board1 " 
+					+ " order by bid desc) z where rownum <= %d )"
+					+ " where rnum >=%d ",endCount, startCount);
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -102,5 +106,31 @@ public class BoardDAO {
 		
 		return result;
 	}
-	
+
+	public int getBoardTotalCount(int btype) {
+		int totalCount=0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		 try {
+			con = getConn();
+			String sql = String.format( " select "
+					+ " count(*) as totalCount " 
+					+ " from t_board%d ",btype);
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				totalCount = rs.getInt("totalCount");
+				
+				System.out.println("카운트 완료" + totalCount);
+			}
+		} catch (SQLException e) {
+			//TODO: 예외처리
+		}catch (Exception e) {
+			//TODO: 예외처리
+		} finally {
+			close(con, ps, rs);
+		}
+		return totalCount;
+	}
 }

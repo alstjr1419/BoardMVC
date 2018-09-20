@@ -16,6 +16,7 @@
 <style>
 </style>
 <%String btype = request.getParameter("btype"); %>
+<%int maxPage = Integer.parseInt(request.getParameter("maxPage")); %>
 </head>
 <body>
 
@@ -48,7 +49,8 @@ for(BoardVO vo : result){%>
 		<input type="submit" value="글쓰기">
 		</form>
 	</div>
-
-
+	<%for(int i =0; i<maxPage; i++){ %>
+<a href="boardList.bo?btype=<%=btype%>&page=<%=i%>"><%=i%></a>
+	<%} %>
 </body>
 </html>

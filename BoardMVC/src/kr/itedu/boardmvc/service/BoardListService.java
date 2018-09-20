@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 import kr.itedu.boardmvc.BoardVO;
 import kr.itedu.boardmvc.common.BoardDAO;
+import kr.itedu.boardmvc.common.BoardPaging;
 
 public class BoardListService {
 	
-	public ArrayList<BoardVO> getBoardList(int btype) {
+	public ArrayList<BoardVO> getBoardList(int btype, int countPage, int page) {
 		ArrayList<BoardVO> result = null;
 		BoardDAO dao = BoardDAO.getInstance();
-		result = dao.getBoardList(btype);
+		result = dao.getBoardList(btype, countPage, page);
 		
 		return result;
 	}
