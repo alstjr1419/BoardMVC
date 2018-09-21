@@ -34,9 +34,13 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		System.out.println("btype");
+		System.out.println("startCount : " + startCount);
+		System.out.println("endCount : " + endCount);
+		
 		 try {
 			con = getConn();
-			String sql = String.format( " select from "
+			String sql = String.format( " select * from "
 					+ " (select rownum as rnum, z.*from " 
 					+ " (select * from t_board1 " 
 					+ " order by bid desc) z where rownum <= %d )"
@@ -54,7 +58,7 @@ public class BoardDAO {
 				bo.setBcontent(bcontent);
 				bo.setBregdate(bregdate);
 				result.add(bo);
-				System.out.println("삽입완료" + btype);
+				System.out.println("boarddao > get board list" + btype);
 			}
 		} catch (SQLException e) {
 			//TODO: 예외처리

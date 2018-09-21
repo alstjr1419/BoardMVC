@@ -14,7 +14,8 @@ public class BoardListService {
 		ArrayList<BoardVO> result = null;
 		BoardDAO dao = BoardDAO.getInstance();
 		result = dao.getBoardList(btype, countPage, page);
-		
+		System.out.println("complete board list action service");
+		//System.out.println("board1 bid : "+result.get(1).getBid());
 		return result;
 	}
 	

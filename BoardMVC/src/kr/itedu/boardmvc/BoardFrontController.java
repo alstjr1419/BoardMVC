@@ -32,6 +32,7 @@ public class BoardFrontController extends HttpServlet {
 			action = new BoardListAction(); //인터페이스 자식 객체 생성
 			try {
 				forward = action.execute(request, response); //request, response받기 , param값 세팅, 보낼곳 적기
+				System.out.println("front controllor complete");
 			} catch (Exception e) {
 				//TODO++: 예외처리
 				e.printStackTrace();

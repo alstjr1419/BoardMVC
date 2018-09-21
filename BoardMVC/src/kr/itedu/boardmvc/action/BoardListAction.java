@@ -24,12 +24,13 @@ public class BoardListAction implements Action{
 		if(btype == -1) {
 			btype = 1;
 		}
+		System.out.println("boardListAction get btype" + btype);
 		int countPage = 10;
 		int page = Utils.getParamInt(request.getParameter("page"));
 		if(page == -1){
 			page = 1;
 		}
-		
+		System.out.println("boardListAction get page" + page);
 		ArrayList<BoardVO> data = service.getBoardList(btype, countPage, page);
 		int maxPage = (int) BoardPaging.maxPage;
 		System.out.println(maxPage);
